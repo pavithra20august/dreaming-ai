@@ -1,0 +1,27 @@
+# Environment & secrets
+.env
+*.env
+
+# Data
+data/
+frontend/dream_images/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Docs not for repo
+LinkedIn_Post.txt
+run.txt
+DreamAI_Documentation.txt

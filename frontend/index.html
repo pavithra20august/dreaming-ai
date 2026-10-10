@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamAI — An AI That Dreams</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Neural particle background -->
+    <canvas id="bg-particles"></canvas>
+
+    <div id="app">
+        <nav id="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <canvas id="logo-pulse" width="36" height="36"></canvas>
+                </div>
+                <div>
+                    <h1>DreamAI</h1>
+                    <span class="tagline">an AI that dreams</span>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <button data-view="chat" class="nav-btn active">
+                    <span class="nav-icon">💬</span> Chat
+                </button>
+                <button data-view="journal" class="nav-btn">
+                    <span class="nav-icon">📖</span> Dream Journal
+                </button>
+                <button data-view="mindmap" class="nav-btn">
+                    <span class="nav-icon">🧠</span> Mind Map
+                </button>
+                <button data-view="analytics" class="nav-btn">
+                    <span class="nav-icon">📊</span> Neural Analytics
+                </button>
+            </div>
+
+            <span class="sidebar-section-label">Conversations</span>
+            <div id="conversations-list"></div>
+
+            <div class="sidebar-actions">
+                <button id="new-chat-btn">+ New Chat</button>
+                <button id="dream-btn">
+                    <span class="dream-btn-glow"></span>
+                    ✨ Dream Now
+                </button>
+            </div>
+
+            <div class="memory-count" id="memory-count"></div>
+        </nav>
+
+        <main id="main-content">
+            <!-- Neural activity bar -->
+            <div id="neural-bar">
+                <div id="neural-activity"></div>
+            </div>
+
+            <!-- Chat View -->
+            <div id="chat-view" class="view active">
+                <div id="chat-messages">
+                    <div class="welcome-message">
+                        <div class="welcome-orb"></div>
+                        <h2>I am DreamAI</h2>
+                        <p>I carry 50 fragments of knowledge — from quantum physics to ancient philosophy, from mycelium networks to music theory.</p>
+                        <p class="welcome-sub">Talk to me about anything. Then click <strong>Dream Now</strong> to watch me find connections you never expected.</p>
+                        <div class="welcome-topics">
+                            <span class="topic-chip" data-topic="Tell me about quantum entanglement and how it connects to human consciousness">Quantum & Consciousness</span>
+                            <span class="topic-chip" data-topic="How are mycelium networks similar to the internet?">Mycelium & Internet</span>
+                            <span class="topic-chip" data-topic="What's the relationship between music and mathematics?">Music & Math</span>
+                            <span class="topic-chip" data-topic="Tell me about emergence - how complexity arises from simplicity">Emergence</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="chat-input-area">
+                    <textarea id="chat-input" placeholder="Talk to DreamAI..." rows="1"></textarea>
+                    <button id="send-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dream Journal View -->
+            <div id="journal-view" class="view">
+                <div class="journal-header">
+                    <h2>Dream Journal</h2>
+                    <p>Insights discovered while dreaming</p>
+                </div>
+                <div id="dream-cards">
+                    <div class="empty-state">
+                        <div class="empty-orb"></div>
+                        <h3>No dreams yet</h3>
+                        <p>Click "Dream Now" — I already have 50 knowledge fragments to dream about.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mind Map View -->
+            <div id="mindmap-view" class="view">
+                <div class="mindmap-header">
+                    <h2>Mind Map</h2>
+                    <div class="mindmap-legend">
+                        <span class="legend-item"><span class="legend-dot conversation"></span> Conversation</span>
+                        <span class="legend-item"><span class="legend-dot dream"></span> Dream</span>
+                        <span class="legend-item"><span class="legend-dot insight"></span> Insight</span>
+                    </div>
+                </div>
+                <div id="mindmap-container">
+                    <canvas id="mindmap-canvas"></canvas>
+                    <div id="mindmap-tooltip"></div>
+                </div>
+            </div>
+            <!-- Analytics View -->
+            <div id="analytics-view" class="view">
+                <div class="analytics-header">
+                    <h2>Neural Analytics</h2>
+                    <p>Visualizing the dreaming mind</p>
+                    <div class="stats-row" id="stats-row"></div>
+                </div>
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <div class="chart-title">Word Heat Map</div>
+                        <div class="chart-subtitle">Frequency of concepts across dreams</div>
+                        <div class="chart-container"><canvas id="chart-heatmap"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-title">Dream Dimensions</div>
+                        <div class="chart-subtitle">Radar analysis of dream quality</div>
+                        <div class="chart-container"><canvas id="chart-radar"></canvas></div>
+                    </div>
+                    <div class="chart-card chart-wide">
+                        <div class="chart-title">Knowledge Flow</div>
+                        <div class="chart-subtitle">Sankey diagram: Memories → Dreams → Insights</div>
+                        <div class="chart-container"><canvas id="chart-sankey"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-title">Neural Theme Network</div>
+                        <div class="chart-subtitle">How dream themes connect like neurons</div>
+                        <div class="chart-container"><canvas id="chart-neuron"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-title">Theme Cycles</div>
+                        <div class="chart-subtitle">Radial view of recurring dream themes</div>
+                        <div class="chart-container"><canvas id="chart-cycle"></canvas></div>
+                    </div>
+                    <div class="chart-card chart-wide">
+                        <div class="chart-title">Emotional Waveform</div>
+                        <div class="chart-subtitle">The emotional arc of each dream — curiosity, wonder, tension, revelation</div>
+                        <div class="chart-container"><canvas id="chart-emotion-wave"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-title">Emotion Distribution</div>
+                        <div class="chart-subtitle">Which emotions appear most across all dreams</div>
+                        <div class="chart-container"><canvas id="chart-emotion-donut"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dream Overlay -->
+    <div id="dream-overlay">
+        <canvas id="dream-canvas"></canvas>
+        <div class="dream-content">
+            <div class="dream-overlay-header">
+                <h2 id="dream-title">Dreaming...</h2>
+                <div class="dream-status" id="dream-status">Gathering memory fragments</div>
+            </div>
+            <div id="dream-stream-container">
+                <div id="dream-stream"></div>
+            </div>
+            <button id="dream-close-btn">Wake Up</button>
+        </div>
+    </div>
+
+    <script src="/static/particles.js"></script>
+    <script src="/static/charts.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
